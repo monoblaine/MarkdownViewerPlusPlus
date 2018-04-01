@@ -1,0 +1,3 @@
+[submodule "HTML-Renderer"]
+	path = HTML-Renderer
+	url = git@github.com:nea/HTML-Renderer.git
