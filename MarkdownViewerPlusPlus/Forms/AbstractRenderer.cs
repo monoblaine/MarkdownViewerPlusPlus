@@ -264,11 +264,7 @@ namespace com.insanitydesign.MarkdownViewerPlusPlus.Forms
                 using (StreamWriter sw = new StreamWriter(saveFileDialog.FileName))
                 {
                     string html = BuildHtml(ConvertedText, this.FileInfo.FileName);
-                    try
-                    {
-                        html = XDocument.Parse(html).ToString();
-                    }
-                    catch { }
+
                     sw.WriteLine(html);
                 }
                 //Open if requested
