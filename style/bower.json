@@ -1,0 +1,22 @@
+{
+  "name": "markdownviewerplusplus-styles",
+  "description": "Stylesheet for MarkdownViewer++",
+  "main": "index.js",
+  "authors": [
+    "Serhan Apaydın <zerhan@gmail.com> (https://github.com/monoblaine)"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/monoblaine/MarkdownViewerPlusPlus",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap-sass": "https://github.com/monoblaine/bootstrap-sass.git#v3.3.9",
+    "abt-sass": "https://gitlab.com/FrontEndProjects/sass.git#1.25.4"
+  }
+}

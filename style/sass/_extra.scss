@@ -1,0 +1,34 @@
+//ş
+body {
+    padding: .5em 1em 1em;
+}
+
+.task-checkbox {
+    display: inline-block;
+    margin-right: 3px;
+    padding-left: 4px;
+    padding-right: 4px;
+    background-color: #ff8a80;
+    color: #fff;
+
+    del > & {
+        background-color: #bdbdbd;
+    }
+
+    &--checked {
+        background-color: #4caf50;
+    }
+
+    &-sign--invisible {
+        visibility: hidden;
+    }
+}
+
+code {
+    padding: 1px 5px;
+    font-size: 100%;
+
+    pre > & {
+        padding-bottom: 0;
+    }
+}

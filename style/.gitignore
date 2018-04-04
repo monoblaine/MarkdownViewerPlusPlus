@@ -1,0 +1,7 @@
+*.bak
+*.Cache*
+Thumbs.db
+node_modules
+npm-debug.log
+bower_components
+md.css
