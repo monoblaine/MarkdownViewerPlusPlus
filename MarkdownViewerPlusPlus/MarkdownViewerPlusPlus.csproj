@@ -172,6 +172,8 @@
       <DependentUpon>OptionsPanelPDF.cs</DependentUpon>
     </Compile>
     <Compile Include="Helper\ClipboardHelper.cs" />
+    <Compile Include="MarkdigExtensions\VisualTaskLists\HtmlVisualTaskListRenderer.cs" />
+    <Compile Include="MarkdigExtensions\VisualTaskLists\VisualTaskListExtension.cs" />
     <Compile Include="MarkdownViewer.cs" />
     <Compile Include="MarkdownViewerConfiguration.cs" />
     <Compile Include="PluginInfrastructure\ClikeStringArray.cs" />

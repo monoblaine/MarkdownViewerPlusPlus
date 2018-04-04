@@ -67,7 +67,27 @@ namespace com.insanitydesign.MarkdownViewerPlusPlus.Forms
         /// <summary>
         /// 
         /// </summary>
-        protected MarkdownPipeline markdownPipeline = new MarkdownPipelineBuilder().UseAdvancedExtensions().Build();
+        protected MarkdownPipeline markdownPipeline = new MarkdownPipelineBuilder()
+            .UseBootstrap()
+            .UseAbbreviations()
+            .UseAutoIdentifiers()
+            .UseCitations()
+            .UseCustomContainers()
+            .UseDefinitionLists()
+            .UseEmphasisExtras()
+            .UseFigures()
+            .UseFooters()
+            .UseFootnotes()
+            .UseGridTables()
+            .UseMathematics()
+            .UseMediaLinks()
+            .UsePipeTables()
+            .UseListExtras()
+            .Use<MarkdigExtensions.VisualTaskLists.VisualTaskListExtension>()
+            .UseDiagrams()
+            .UseAutoLinks()
+            .UseGenericAttributes()
+            .Build();
 
         /// <summary>
         /// 
