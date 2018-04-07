@@ -98,8 +98,8 @@
     <Reference Include="HtmlRenderer.WinForms">
       <HintPath>..\HTML-Renderer\Source\HtmlRenderer.WinForms\bin\ReleaseNet20\HtmlRenderer.WinForms.dll</HintPath>
     </Reference>
-    <Reference Include="Markdig, Version=0.14.9.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Markdig.0.14.9\lib\net40\Markdig.dll</HintPath>
+    <Reference Include="Markdig">
+      <HintPath>..\markdig\src\Markdig\bin\Release\net35\Markdig.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.Office.Interop.Outlook, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
