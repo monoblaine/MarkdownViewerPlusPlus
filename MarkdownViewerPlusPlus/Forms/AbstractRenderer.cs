@@ -87,6 +87,7 @@ namespace com.insanitydesign.MarkdownViewerPlusPlus.Forms
             .UseDiagrams()
             .UseAutoLinks()
             .UseGenericAttributes()
+            .UseSoftlineBreakAsHardlineBreak()
             .Build();
 
         /// <summary>
