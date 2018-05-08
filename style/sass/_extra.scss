@@ -25,10 +25,6 @@ body {
     }
 }
 
-pre {
-  font-size: 12px;
-}
-
 code {
     padding: 1px 5px;
     font-size: 100%;
@@ -36,4 +32,8 @@ code {
     pre > & {
         padding-bottom: 0;
     }
+}
+
+pre {
+  font-size: 12px;
 }
