@@ -37,3 +37,8 @@ code {
 pre {
   font-size: 12px;
 }
+
+th,
+td {
+    word-break: break-all;
+}
