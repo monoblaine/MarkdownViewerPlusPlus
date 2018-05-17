@@ -1,6 +1,6 @@
 //ş
 body {
-    padding: .5em 1em 1em;
+    padding: $font-size-base / 2 $font-size-base $font-size-base;
     width: 560 + $font-size-base * 2;
 }
 
