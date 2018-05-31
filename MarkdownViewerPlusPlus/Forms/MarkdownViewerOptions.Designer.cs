@@ -32,7 +32,6 @@
             this.components = new System.ComponentModel.Container();
             System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("General");
             System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("HTML", 1, 1);
-            System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("PDF", 2, 2);
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MarkdownViewerOptions));
             this.btnOptionsSave = new System.Windows.Forms.Button();
             this.btnOptionsCancel = new System.Windows.Forms.Button();
@@ -102,15 +101,9 @@
             treeNode2.SelectedImageIndex = 1;
             treeNode2.Tag = "OptionsPanelHTML";
             treeNode2.Text = "HTML";
-            treeNode3.ImageIndex = 2;
-            treeNode3.Name = "nodePDF";
-            treeNode3.SelectedImageIndex = 2;
-            treeNode3.Tag = "OptionsPanelPDF";
-            treeNode3.Text = "PDF";
             this.treeOptions.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
             treeNode1,
-            treeNode2,
-            treeNode3});
+            treeNode2});
             this.treeOptions.SelectedImageIndex = 0;
             this.treeOptions.Size = new System.Drawing.Size(135, 306);
             this.treeOptions.TabIndex = 0;
