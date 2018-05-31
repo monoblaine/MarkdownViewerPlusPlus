@@ -9,12 +9,9 @@ using System.Drawing.Imaging;
 using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
-using Outlook = Microsoft.Office.Interop.Outlook;
 using static com.insanitydesign.MarkdownViewerPlusPlus.Windows.WindowsMessage;
 using System.Drawing.Printing;
-using TheArtOfDev.HtmlRenderer.PdfSharp;
 using System.Xml.Linq;
-using PdfSharp.Pdf;
 using System.IO;
 using System.Net;
 using com.insanitydesign.MarkdownViewerPlusPlus.Helper;
@@ -63,6 +60,8 @@ namespace com.insanitydesign.MarkdownViewerPlusPlus.Forms
         /// 
         /// </summary>
         protected virtual FileInformation FileInfo { get; set; }
+
+        protected Double LastScrollRatio;
 
         /// <summary>
         /// 
@@ -139,10 +138,6 @@ namespace com.insanitydesign.MarkdownViewerPlusPlus.Forms
             //Register dockable window and hide initially
             Win32.SendMessage(PluginBase.nppData._nppHandle, (uint)NppMsg.NPPM_DMMREGASDCKDLG, 0, _ptrNppTbData);
             Win32.SendMessage(PluginBase.nppData._nppHandle, (uint)NppMsg.NPPM_DMMHIDE, 0, this.Handle);
-
-            //Hide the E-mail items if Outlook is not installed
-            this.sendAsTextMail.Visible = IsOutlookInstalled();
-            this.sendAsHTMLMail.Visible = IsOutlookInstalled();
         }
 
         /// <summary>
@@ -179,16 +174,6 @@ namespace com.insanitydesign.MarkdownViewerPlusPlus.Forms
         }
 
         /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        protected void refreshToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            this.markdownViewer.Update();
-        }
-
-        /// <summary>
         /// Scroll the rendered panel vertically based on the given ration
         /// taken from Notepad++
         /// </summary>
@@ -216,152 +201,22 @@ namespace com.insanitydesign.MarkdownViewerPlusPlus.Forms
         <style type=""text/css"">
             {this.getCSS()}
         </style>
+        <script>
+            const lastScrollRatio = {LastScrollRatio.ToString(System.Globalization.CultureInfo.InvariantCulture)};
+
+            document.addEventListener(""DOMContentLoaded"", function(event) {{
+                const visibleHeight = window.innerHeight,
+                      scrollHeight = document.scrollingElement.scrollHeight;
+
+                window.scrollTo(0, (scrollHeight - visibleHeight) * lastScrollRatio);
+            }});
+        </script>
       </head>
     <body>
         {html}
     </body>
 </html>
             ";
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        protected virtual void sendAsTextMail_Click(object sender, EventArgs e)
-        {
-            //Double-check
-            if (IsOutlookInstalled())
-            {
-                Outlook.Application outlook = new Outlook.Application();
-                Outlook.MailItem message = (Outlook.MailItem)outlook.CreateItem(Outlook.OlItemType.olMailItem);
-                //
-                message.Subject = this.FileInfo.FileName;
-                message.BodyFormat = Outlook.OlBodyFormat.olFormatPlain;
-                message.Body = RawText;
-                message.Display();
-            }
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        protected virtual void sendAsHTMLMail_Click(object sender, EventArgs e)
-        {
-            //Double-check
-            if (IsOutlookInstalled())
-            {
-                Outlook.Application outlook = new Outlook.Application();
-                Outlook.MailItem message = (Outlook.MailItem)outlook.CreateItem(Outlook.OlItemType.olMailItem);
-                //
-                message.Subject = this.FileInfo.FileName;
-                message.BodyFormat = Outlook.OlBodyFormat.olFormatHTML;
-                message.HTMLBody = BuildHtml(ConvertedText, this.FileInfo.FileName);
-                message.Display(true);
-            }
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        protected virtual void exportAsHTMLMenuItem_Click(object sender, EventArgs e)
-        {
-            //Save!
-            SaveFileDialog saveFileDialog = new SaveFileDialog();
-            //Default name of the file is the editor file name
-            saveFileDialog.FileName = Path.GetFileNameWithoutExtension(this.FileInfo.FileName) + ".html";
-            //The current path
-            saveFileDialog.InitialDirectory = this.markdownViewer.Notepad.GetCurrentDirectory();
-            //
-            saveFileDialog.Filter = "HTML files (*.html)|*.html|All files (*.*)|*.*";
-            //
-            if (saveFileDialog.ShowDialog() == DialogResult.OK)
-            {
-                using (StreamWriter sw = new StreamWriter(saveFileDialog.FileName))
-                {
-                    string html = BuildHtml(ConvertedText, this.FileInfo.FileName);
-
-                    sw.WriteLine(html);
-                }
-                //Open if requested
-                if (this.markdownViewer.Options.htmlOpenExport)
-                {
-                    Process.Start(saveFileDialog.FileName);
-                }
-            }
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        protected virtual void exportAsPDFMenuItem_Click(object sender, EventArgs e)
-        {
-            //Save!
-            SaveFileDialog saveFileDialog = new SaveFileDialog();
-            //Default name of the file is the editor file name
-            saveFileDialog.FileName = Path.GetFileNameWithoutExtension(this.FileInfo.FileName) + ".pdf";
-            //The current path
-            saveFileDialog.InitialDirectory = this.markdownViewer.Notepad.GetCurrentDirectory();
-            //
-            saveFileDialog.Filter = "PDF files (*.pdf)|*.pdf|All files (*.*)|*.*";
-            //
-            if (saveFileDialog.ShowDialog() == DialogResult.OK)
-            {
-                //Build a config based on made settings
-                PdfGenerateConfig pdfConfig = new PdfGenerateConfig();
-                pdfConfig.PageOrientation = this.markdownViewer.Options.pdfOrientation;
-                pdfConfig.PageSize = this.markdownViewer.Options.pdfPageSize;
-                //Set margins
-                int[] margins = this.markdownViewer.Options.GetMargins();
-                pdfConfig.MarginLeft = MilimiterToPoint(margins[0]);
-                pdfConfig.MarginTop = MilimiterToPoint(margins[1]);
-                pdfConfig.MarginRight = MilimiterToPoint(margins[2]);
-                pdfConfig.MarginBottom = MilimiterToPoint(margins[3]);
-                //Generate PDF and save
-                PdfDocument pdf = PdfGenerator.GeneratePdf(BuildHtml(ConvertedText, this.FileInfo.FileName), pdfConfig, PdfGenerator.ParseStyleSheet(this.getCSS()));
-                pdf.Save(saveFileDialog.FileName);
-
-                //Open if requested
-                if (this.markdownViewer.Options.pdfOpenExport)
-                {
-                    Process.Start(saveFileDialog.FileName);
-                }
-            }
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        protected virtual void sendToPrinter_Click(object sender, EventArgs e)
-        {
-            //
-            WebBrowser webBrowser = new WebBrowser();
-            webBrowser.Parent = this;
-            webBrowser.DocumentCompleted += (browser, webBrowserEvent) =>
-            {
-                ((WebBrowser)browser).Size = webBrowser.MaximumSize;
-                ((WebBrowser)browser).ShowPrintPreviewDialog();
-            };
-            webBrowser.DocumentText = BuildHtml(ConvertedText, this.FileInfo.FileName);
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        protected void sendToClipboard_Click(object sender, EventArgs e)
-        {
-            ClipboardHelper.CopyToClipboard(BuildHtml(ConvertedText, this.FileInfo.FileName), ConvertedText);
         }
 
         /// <summary>
@@ -388,24 +243,6 @@ namespace com.insanitydesign.MarkdownViewerPlusPlus.Forms
         protected int MilimiterToPoint(int mm)
         {
             return (int)(mm * 2.834646);
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <returns></returns>
-        public bool IsOutlookInstalled()
-        {
-            try
-            {
-                if (Type.GetTypeFromProgID("Outlook.Application") != null)
-                {
-                    return true;
-                }
-            }
-            catch { }
-
-            return false;
         }
     }
 }

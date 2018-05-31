@@ -1,5 +1,4 @@
 ﻿using Kbg.NppPluginNET.PluginInfrastructure;
-using PdfSharp;
 using System;
 using System.IO;
 using System.Linq;
@@ -49,43 +48,6 @@ namespace com.insanitydesign.MarkdownViewerPlusPlus
                     htmlCssStyle = value.Replace(Environment.NewLine, @" \n ");
                 }
             }
-            /// <summary>
-            /// 
-            /// </summary>
-            public PageOrientation pdfOrientation;
-            /// <summary>
-            /// 
-            /// </summary>
-            public PageSize pdfPageSize;
-            /// <summary>
-            /// 
-            /// </summary>
-            public string margins;
-            
-            /// <summary>
-            /// 
-            /// </summary>
-            /// <returns></returns>
-            public int[] GetMargins()
-            {
-                try
-                {
-                    return this.margins.Split(',').Select(x => int.Parse(x)).ToArray();
-                }
-                catch { }
-                //Default to 5mm
-                return new int[] { 5, 5, 5, 5 };
-            }
-
-            /// <summary>
-            /// 
-            /// </summary>
-            public bool pdfOpenExport;
-
-            /// <summary>
-            /// 
-            /// </summary>
-            public bool htmlOpenExport;
         }
 
         /// <summary>
@@ -215,12 +177,7 @@ namespace com.insanitydesign.MarkdownViewerPlusPlus
             Options options = new Options()
             {
                 inclNewFiles = true,
-                pdfOrientation = PageOrientation.Portrait,
-                pdfPageSize = PageSize.A4,
-                synchronizeScrolling = false,
-                margins = "5,5,5,5",
-                pdfOpenExport = false,
-                htmlOpenExport = false
+                synchronizeScrolling = false
             };
             return options;
         }
