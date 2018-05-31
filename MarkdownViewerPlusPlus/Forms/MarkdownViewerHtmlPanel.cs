@@ -69,6 +69,13 @@ namespace com.insanitydesign.MarkdownViewerPlusPlus.Forms
         {
             if (!IsDisposed)
             {
+                /*
+                 * Ideally we should use InvokeScript and execute window.scrollTo
+                 * function but at the moment (2018-05-31) we cannot do that
+                 * because something's wrong with Microsoft Edge.
+                 *
+                 * https://developer.microsoft.com/en-us/microsoft-edge/platform/issues/17666057/
+                 */
             }
         }
 
