@@ -201,8 +201,11 @@ namespace com.insanitydesign.MarkdownViewerPlusPlus.Forms
         <style type=""text/css"">
             {this.getCSS()}
         </style>
+        <script src=""https://unpkg.com/mermaid@8.0.0-rc.8/dist/mermaid.min.js""></script>
         <script>
             const lastScrollRatio = {LastScrollRatio.ToString(System.Globalization.CultureInfo.InvariantCulture)};
+
+            mermaid.initialize({{startOnLoad:true}});
 
             document.addEventListener(""DOMContentLoaded"", function(event) {{
                 const visibleHeight = window.innerHeight,
