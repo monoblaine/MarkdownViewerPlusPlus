@@ -17,7 +17,7 @@ namespace com.insanitydesign.MarkdownViewerPlusPlus.MarkdigExtensions.VisualTask
                     renderer.Write(" task-checkbox-sign--invisible");
                 }
 
-                renderer.Write(@""">✔</span></span>");
+                renderer.Write(@""">&#xE73E</span></span>");
             }
             else {
                 base.Write(renderer, obj);
