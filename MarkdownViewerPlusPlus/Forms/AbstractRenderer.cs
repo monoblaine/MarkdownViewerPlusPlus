@@ -1,4 +1,4 @@
-﻿using com.insanitydesign.MarkdownViewerPlusPlus.Properties;
+using com.insanitydesign.MarkdownViewerPlusPlus.Properties;
 using com.insanitydesign.MarkdownViewerPlusPlus.Windows;
 using Kbg.NppPluginNET;
 using Kbg.NppPluginNET.PluginInfrastructure;
@@ -215,7 +215,7 @@ namespace com.insanitydesign.MarkdownViewerPlusPlus.Forms
             }});
         </script>
       </head>
-    <body>
+    <body class=""numbered-section"">
         {html}
     </body>
 </html>
