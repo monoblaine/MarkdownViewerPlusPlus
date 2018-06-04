@@ -207,7 +207,7 @@ namespace com.insanitydesign.MarkdownViewerPlusPlus.Forms
 
             mermaid.initialize({{startOnLoad:true}});
 
-            document.addEventListener(""DOMContentLoaded"", function(event) {{
+            window.addEventListener(""load"", function(event) {{
                 const visibleHeight = window.innerHeight,
                       scrollHeight = document.scrollingElement.scrollHeight;
 
