@@ -11,3 +11,9 @@ $font-size-h3: ceil(($font-size-base * 1.5));
 $font-size-h4: ceil(($font-size-base * 1.25));
 $font-size-h5: ceil(($font-size-base * 1.1));
 $font-size-h6: $font-size-base;
+
+$screen-xl: 13px;
+$screen-lg: 10px;
+$screen-md: 7px;
+$screen-sm: 4px;
+$screen-xs: 1px;
