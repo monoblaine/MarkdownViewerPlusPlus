@@ -1,5 +1,6 @@
 using System;
 using System.Drawing;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using Microsoft.Toolkit.Win32.UI.Controls.WinForms;
 
@@ -54,10 +55,12 @@ namespace com.insanitydesign.MarkdownViewerPlusPlus.Forms
             get { return _text; }
             set {
                 _text = value;
-                if (!IsDisposed)
-                {
-                    _webView.NavigateToString(_text);
-                }
+
+                Task.Delay(100).ContinueWith(t => {
+                    if (!IsDisposed && !_webView.IsDisposed && _webView.Visible) {
+                        _webView.NavigateToString(_text);
+                    }
+                });
             }
         }
 
@@ -77,14 +80,6 @@ namespace com.insanitydesign.MarkdownViewerPlusPlus.Forms
                  * https://developer.microsoft.com/en-us/microsoft-edge/platform/issues/17666057/
                  */
             }
-        }
-
-        protected override void Dispose (Boolean disposing) {
-            if (_webView != null) {
-                _webView.Dispose();
-            }
-
-            base.Dispose(disposing);
         }
     }
 }
