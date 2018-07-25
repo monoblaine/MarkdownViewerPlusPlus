@@ -5,6 +5,8 @@ VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MarkdownViewerPlusPlus", "MarkdownViewerPlusPlus\MarkdownViewerPlusPlus.csproj", "{E56F6E12-089C-40ED-BCFD-923E5FA121A1}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cli", "Cli\Cli.csproj", "{2925EB4C-FD10-493F-9261-03C155B851EE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,8 +29,23 @@ Global
 		{E56F6E12-089C-40ED-BCFD-923E5FA121A1}.Release|x64.Build.0 = Release|x64
 		{E56F6E12-089C-40ED-BCFD-923E5FA121A1}.Release|x86.ActiveCfg = Release|x86
 		{E56F6E12-089C-40ED-BCFD-923E5FA121A1}.Release|x86.Build.0 = Release|x86
+		{2925EB4C-FD10-493F-9261-03C155B851EE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2925EB4C-FD10-493F-9261-03C155B851EE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2925EB4C-FD10-493F-9261-03C155B851EE}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{2925EB4C-FD10-493F-9261-03C155B851EE}.Debug|x64.Build.0 = Debug|Any CPU
+		{2925EB4C-FD10-493F-9261-03C155B851EE}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{2925EB4C-FD10-493F-9261-03C155B851EE}.Debug|x86.Build.0 = Debug|Any CPU
+		{2925EB4C-FD10-493F-9261-03C155B851EE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2925EB4C-FD10-493F-9261-03C155B851EE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2925EB4C-FD10-493F-9261-03C155B851EE}.Release|x64.ActiveCfg = Release|Any CPU
+		{2925EB4C-FD10-493F-9261-03C155B851EE}.Release|x64.Build.0 = Release|Any CPU
+		{2925EB4C-FD10-493F-9261-03C155B851EE}.Release|x86.ActiveCfg = Release|Any CPU
+		{2925EB4C-FD10-493F-9261-03C155B851EE}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {5AAE5D73-CE10-405F-B6A7-585D546B1184}
 	EndGlobalSection
 EndGlobal
