@@ -61,8 +61,6 @@ namespace com.insanitydesign.MarkdownViewerPlusPlus.Forms
         /// </summary>
         protected virtual FileInformation FileInfo { get; set; }
 
-        protected Double LastScrollRatio;
-
         /// <summary>
         /// 
         /// </summary>
@@ -203,16 +201,14 @@ namespace com.insanitydesign.MarkdownViewerPlusPlus.Forms
         </style>
         <script src=""https://unpkg.com/mermaid@8.0.0-rc.8/dist/mermaid.min.js""></script>
         <script>
-            const lastScrollRatio = {LastScrollRatio.ToString(System.Globalization.CultureInfo.InvariantCulture)};
-
-            mermaid.initialize({{startOnLoad:true}});
-
-            window.addEventListener(""load"", function(event) {{
+            function scrollByRatio (ratio) {{
                 const visibleHeight = window.innerHeight,
                       scrollHeight = document.scrollingElement.scrollHeight;
 
-                window.scrollTo(0, (scrollHeight - visibleHeight) * lastScrollRatio);
-            }});
+                window.scrollTo(0, (scrollHeight - visibleHeight) * ratio);
+            }}
+
+            mermaid.initialize({{startOnLoad:true}});
         </script>
       </head>
     <body class=""numbered-section"">

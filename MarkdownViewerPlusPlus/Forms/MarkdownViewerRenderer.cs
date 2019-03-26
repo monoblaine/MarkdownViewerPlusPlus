@@ -60,8 +60,6 @@ namespace com.insanitydesign.MarkdownViewerPlusPlus.Forms
         /// <param name="scrollRatio"></param>
         public override void ScrollByRatioVertically(double scrollRatio)
         {
-            LastScrollRatio = scrollRatio;
-            this.markdownViewerHtmlPanel.Text = BuildHtml(ConvertedText, FileInfo.FileName);
             this.markdownViewerHtmlPanel.ScrollByRatioVertically(scrollRatio);
         }
     }

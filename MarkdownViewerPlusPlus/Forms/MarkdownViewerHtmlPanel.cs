@@ -2,7 +2,7 @@ using System;
 using System.Drawing;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Microsoft.Toolkit.Win32.UI.Controls.WinForms;
+using Microsoft.Toolkit.Forms.UI.Controls;
 
 /// <summary>
 /// 
@@ -72,6 +72,7 @@ namespace com.insanitydesign.MarkdownViewerPlusPlus.Forms
         {
             if (!IsDisposed)
             {
+                _webView.InvokeScript("scrollByRatio", scrollRatio.ToString(System.Globalization.CultureInfo.InvariantCulture));
             }
         }
     }
