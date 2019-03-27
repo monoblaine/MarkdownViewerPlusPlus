@@ -17,6 +17,6 @@
   ],
   "dependencies": {
     "bootstrap-sass": "https://github.com/monoblaine/bootstrap-sass.git#v3.3.9",
-    "abt-sass": "https://gitlab.com/FrontEndProjects/sass.git#1.26.0"
+    "abt-sass": "https://gitlab.com/FrontEndProjects/sass.git#3.0.1"
   }
 }
