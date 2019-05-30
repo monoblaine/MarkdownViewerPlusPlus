@@ -5,6 +5,7 @@ using System.Drawing.Imaging;
 using System.Net;
 using System.Threading;
 using static com.insanitydesign.MarkdownViewerPlusPlus.MarkdownViewer;
+using MarkdownMonster.Windows;
 
 /// <summary>
 /// 
@@ -20,6 +21,8 @@ namespace com.insanitydesign.MarkdownViewerPlusPlus.Forms
         /// 
         /// </summary>
         public MarkdownViewerHtmlPanel markdownViewerHtmlPanel;
+
+        private readonly DebounceDispatcher _debounceTimer = new DebounceDispatcher();
 
         /// <summary>
         /// 
@@ -50,7 +53,11 @@ namespace com.insanitydesign.MarkdownViewerPlusPlus.Forms
         public override void Render(string text, FileInformation fileInfo)
         {
             base.Render(text, fileInfo);
-            this.markdownViewerHtmlPanel.Text = BuildHtml(ConvertedText, fileInfo.FileName);
+
+            _debounceTimer.Debounce(
+                interval: 1000,
+                action: _ => this.markdownViewerHtmlPanel.Text = BuildHtml(ConvertedText, fileInfo.FileName)
+            );
         }
 
         /// <summary>
