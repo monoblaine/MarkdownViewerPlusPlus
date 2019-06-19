@@ -32,6 +32,10 @@ namespace com.insanitydesign.MarkdownViewerPlusPlus.Forms
                 IsJavaScriptEnabled = true,
                 CausesValidation = false,
                 IsIndexedDBEnabled = false,
+                // When true, Notepad++ won't launch. When false, links and images
+                // with localhost urls won't work. A workaround is to run the following
+                // command as an administrator:
+                // checknetisolation LoopbackExempt -a -n=Microsoft.Win32WebViewHost_cw5n1h2txyewy
                 IsPrivateNetworkClientServerCapabilityEnabled = false,
                 IsScriptNotifyAllowed = false,
                 TabIndex = 0
