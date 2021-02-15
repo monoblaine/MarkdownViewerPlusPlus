@@ -5,6 +5,9 @@ $headings-font-weight: 700;
 $headings-color: #921407;
 $font-size-base: 14px;
 $font-family-monospace: 'Fira Code';
+$blockquote-font-size: $font-size-base * 1.1;
+$blockquote-border-color: #ff8c00;
+$blockquote-small-color: #bbb;
 
 $font-size-h1: floor(($font-size-base * 2));
 $font-size-h2: floor(($font-size-base * 1.75));
@@ -18,3 +21,8 @@ $screen-lg: 10px;
 $screen-md: 7px;
 $screen-sm: 4px;
 $screen-xs: 1px;
+
+blockquote {
+    background-color: #555;
+    color: #fff;
+}
